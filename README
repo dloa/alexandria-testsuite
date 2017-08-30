@@ -1,1 +1,8 @@
 User journey tests for Alexandria.io.
+
+## Instructions:
+
+git clone https://github.com/dloa/alexandria-testsuite.git;
+cd alexandria-testsuite;
+npm install -D;
+npm run test
