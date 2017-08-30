@@ -8,16 +8,20 @@ describe('test duckduckgo search results', function() {
     var nightmare = Nightmare({ show: true })
 
     nightmare
-      .goto('http://yahoo.com')
-      .type('form[action*="/search"] [name=p]', 'github nightmare')
-      .click('form[action*="/search"] [type=submit]')
-      .wait('#main')
+      .goto('https://alexandria.io/browser')
+      .type('#search-main', 'test')
+      .wait('#media-results-wrap')
+      .click('#browse-media .module-links > ul > li a[value="movie"]')
+      .wait('#media-results-wrap')
+      .click('#media-results-wrap h3.media-title')
+      .wait('#view-artifact-wrap')
       .evaluate(function () {
-        return document.querySelector('#main .searchCenterMiddle li a').href
+        var title = document.querySelector('h1.artifact-title');
+
+        return title && title.innerText.length > 0;
       })
       .end()
       .then(function (result) {
-        console.log(result)
         done();
       })
       .catch(function (error) {
